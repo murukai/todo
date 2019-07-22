@@ -15,4 +15,5 @@ public interface ToDoService {
 	ToDo updateToDo(ToDo toDo);
 	boolean deleteToDoById(Long id);
 	boolean deleteToDo(ToDo toDo);
+	Date convertStringToDate(String date);
 }

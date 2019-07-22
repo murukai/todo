@@ -1,8 +1,10 @@
 package com.afrikatek.todoapp.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.beanutils.converters.DateConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +72,19 @@ public class ToDoServiceImpl implements ToDoService {
 			
 		}
 		return false;
+	}
+
+	@Override
+	public Date convertStringToDate(String date) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+		
+		Date dateString = null;
+		try {
+			dateString = formatter.parse(date);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dateString;
 	}
 
 }
