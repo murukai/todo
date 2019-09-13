@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="template :: header"></head>
+    <body>
+        <nav th:replace="template :: nav-bar"></nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div th:each="todo : ${todos}">
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <a class="mr-2" href="#"><span th:text="${todo.name}"></span></a>
+                                <small class="text-muted"><span th:text="${todo.dateDue}"></span></small>
+                            </div>
+                            <h2><a class="article-title" href="#"><span th:text="${todo.name}"></span></a></h2>
+                            <p class="article-content"><span th:text="${todo.description}"></span></p>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+                <div th:replace="template :: side-bar"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"
+                            th:each="i : ${#numbers.sequence(0,todos.totalPages - 1)}">
+                            <a href="#"
+                               th:text="${i}" class="nav-link"
+                               th:classappend="${currentPage} == ${i}?'active':''"></a>
+                            <!--@{/phone-books/(page=${i})}-->
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div th:replace="template :: scripts"></div>
+    </body>
+
+</html>

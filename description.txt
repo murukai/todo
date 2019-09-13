@@ -1,0 +1,32 @@
+Title : ToDo Application
+Description :
+
+Rest Api :
+
+# all todos
+/api/todos
+
+#todo by id
+
+/api/todos/{id}/todo
+
+# todos posted before
+/api/todos/{datePosted}/before
+
+# todos posted after
+/api/todos/{datePosted}/after
+
+# due todos
+/api/todos/{dateDue}/due
+
+#add ToDo
+POST mapping /api/todos/add
+
+#update ToDo
+PUT mapping /api/todos/update
+
+#delete ToDo
+DELETE mapping /api/todos/delete
+
+#delete ToDo by Id
+DELETE mapping /api/todos/{id}/delete
