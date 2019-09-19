@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
@@ -31,6 +33,19 @@ public class ToDoController {
 
 	@GetMapping("/get-add-todo")
 	public String getAddToDo(Model model){
+		ToDo toDo = new ToDo();
+		model.addAttribute("todo", toDo);
 		return "addtodo";
+	}
+
+	@PostMapping("/add-todo")
+	public String addToDo(Model model,@ModelAttribute ToDo toDo){
+		ToDo addedToDo = toDoService.addToDo(toDo);
+		if(addedToDo != null){
+			model.addAttribute("message", "Successfully added to-do : " + addedToDo.getName());
+		}else {
+			model.addAttribute("message","Failed to add to-do");
+		}
+		return "redirect:/get-add-todo";
 	}
 }
