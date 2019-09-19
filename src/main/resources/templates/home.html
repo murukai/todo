@@ -24,12 +24,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills">
-                        <li class="nav-item"
-                            th:each="i : ${#numbers.sequence(0,todos.totalPages - 1)}">
-                            <a href="#"
+                        <li class="nav-item" th:each="i : ${#numbers.sequence(0,todos.totalPages - 1)}">
+                            <a th:href="@{/(page=${i})}"
                                th:text="${i}" class="nav-link"
                                th:classappend="${currentPage} == ${i}?'active':''"></a>
-                            <!--@{/phone-books/(page=${i})}-->
                         </li>
 
                     </ul>
